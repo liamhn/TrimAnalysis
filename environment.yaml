@@ -1,0 +1,25 @@
+name: trimanalysis
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+  - matplotlib
+  - seaborn
+  - joblib
+  - mdanalysis
+  - mdtraj
+  - umap-learn
+  - jupyterlab
+  - notebook
+  - ipykernel
+  - requests
+  - tqdm
+  - pip:
+      - pybmrb
+      - zenodo-get
