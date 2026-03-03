@@ -10,163 +10,66 @@ This repository is set up for a **conda-based** workflow and includes a data boo
 - `environment.yaml` — conda environment specification for a new user.
 - `setup.py` — downloads repository data from Zenodo DOI `10.5281/zenodo.14014166`.
 
-## 1) Install Git (if needed)
-
-### Windows
-
-Option A (recommended, winget):
-
-```powershell
-winget install --id Git.Git -e --source winget
-```
-
-Option B:
-- Download and install from: https://git-scm.com/download/win
-
-Verify:
-
-```powershell
-git --version
-```
-
-### macOS
-
-```bash
-brew install git
-# or
-xcode-select --install
-```
-
-Verify:
-
-```bash
-git --version
-```
-
-### Linux (Ubuntu/Debian)
-
-```bash
-sudo apt update
-sudo apt install -y git
-```
-
-Verify:
-
-```bash
-git --version
-```
-
-## 2) Clone this repository
+## 1) Clone this repository
 
 If you have the URL:
 
 ```bash
-git clone <REPO_URL>
+git clone https://github.com/liamhn/TrimAnalysis
 cd TrimAnalysis
 ```
 
-If you already have the folder locally, just open it in VS Code and continue.
 
-## 3) Install Conda (Miniconda or Anaconda)
+## 2) Run setup (one command!)
 
-If conda is not installed yet:
-- Miniconda: https://docs.conda.io/en/latest/miniconda.html
-- Anaconda: https://www.anaconda.com/download
-
-After install, open a **new terminal** and verify:
+From the repository root, run:
 
 ```bash
-conda --version
+python setup.py
 ```
 
-## 4) Create and activate the environment
-
-From the repository root:
-
-```bash
-conda env create -f environment.yaml
-conda activate trimanalysis
-```
-
-## 5) Download project data from Zenodo
-
-Run:
-
-```bash
-python setup.py --output-dir data
-```
+This single command will:
+- ✓ Create the `trimanalysis` conda environment (if it doesn't exist)
+- ✓ Register it as a Jupyter kernel
+- ✓ Download Zenodo dataset (only if missing or outdated)
+- ✓ Verify file checksums and skip downloads when files are up-to-date
 
 Useful options:
 
 ```bash
-python setup.py --output-dir data --force
-python setup.py --doi 10.5281/zenodo.14014166 --output-dir data
+# Force re-download even if checksums match
+python setup.py --force
+
+# Skip environment setup (data only)
+python setup.py --skip-env
+
+# Skip data download (environment only)
+python setup.py --skip-data
+
+# Specify different data location
+python setup.py --output-dir my-data
+
+# Use a different DOI
+python setup.py --doi 10.5281/zenodo.14014166
 ```
 
 Notes:
-- The DOI resolves to the latest Zenodo version.
+- The script is **idempotent**: safe to run multiple times.
+- Checksums are verified automatically—only changed files are re-downloaded.
 - The dataset is large (~16 GB zip); ensure sufficient disk space.
 
-## 6) Launch notebooks
+## 3) Activate the environment
+
+After setup completes:
 
 ```bash
-jupyter lab
+conda activate trimanalysis
+```
+
+## 4) Launch notebooks
+
+```bash
+jupyter notebook
 ```
 
 Then open notebooks under `analysiscode/`.
-
-## 7) Basic Git workflow
-
-Check status:
-
-```bash
-git status
-```
-
-Pull latest changes:
-
-```bash
-git pull
-```
-
-Create a feature branch:
-
-```bash
-git checkout -b my-feature
-```
-
-Commit work:
-
-```bash
-git add .
-git commit -m "Describe your change"
-```
-
-Push branch:
-
-```bash
-git push -u origin my-feature
-```
-
-## 8) Updating dependencies later
-
-If `environment.yaml` changes:
-
-```bash
-conda env update -f environment.yaml --prune
-```
-
-## Troubleshooting
-
-- **`conda: command not found`**
-  - Reopen terminal, or initialize shell with `conda init`, then reopen terminal.
-- **`python` not found**
-  - Activate env first: `conda activate trimanalysis`.
-- **Kernel/package mismatch in Jupyter**
-  - Ensure Jupyter is running from the activated conda environment.
-- **Slow/incomplete data download**
-  - Re-run with `--force` to retry all files.
-
----
-
-If you want, a next step is to add a short “recommended notebook run order” section for new users in this README.
