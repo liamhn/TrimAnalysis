@@ -73,3 +73,10 @@ jupyter notebook
 ```
 
 Then open notebooks under `analysiscode/`.
+Right now, the only notebook that is set up to work out of the box is the FigureOnlyFromZenodoData.ipynb.
+This one should create all of the figures that are currently in the paper (unformatted, but all of the graphs themselves).
+
+The analysis itself can also be updated to run on the zenodo data (which gets downloaded by setup.py, but I haven't set that up automatically yet)
+
+
+
