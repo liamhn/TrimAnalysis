@@ -78,5 +78,7 @@ This one should create all of the figures that are currently in the paper (unfor
 
 The analysis itself can also be updated to run on the zenodo data (which gets downloaded by setup.py, but I haven't set that up automatically yet)
 
+5) A final note: The data you really need in on Narval Tape, the trajectories you want are under t5a ... huNumbering/*t5a*/* -- you will want these if you want to use the other in the analysiscode to generate data. If you want to build your own analysis from scratch, then you can use the data that is downloaded from the Zenodo (these are "true numbered residues"). You can write any analysis on these and it will work fine, just make sure you account for the fact that rhesus and human have different residue numberings.
+
 
 
