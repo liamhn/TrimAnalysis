@@ -29,7 +29,7 @@ python setup.py
 ```
 
 This single command will:
-- ✓ Create the `trimanalysis` conda environment (if it doesn't exist)
+- ✓ Create the `TrimAnalysis` conda environment (if it doesn't exist)
 - ✓ Register it as a Jupyter kernel
 - ✓ Download Zenodo dataset (only if missing or outdated)
 - ✓ Verify file checksums and skip downloads when files are up-to-date
@@ -63,7 +63,7 @@ Notes:
 After setup completes:
 
 ```bash
-conda activate trimanalysis
+conda activate TrimaAnalysis
 ```
 
 ## 4) Launch notebooks
